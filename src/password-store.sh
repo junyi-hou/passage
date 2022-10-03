@@ -612,6 +612,7 @@ cmd_extension() {
 PROGRAM="${0##*/}"
 COMMAND="$1"
 
+echo "$IDENTITIES_FILE"
 _IDENTITIES_FILE_EXISTS=0
 
 if [[ -f "$IDENTITIES_FILE" ]]; then
