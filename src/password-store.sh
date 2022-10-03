@@ -612,7 +612,18 @@ cmd_extension() {
 PROGRAM="${0##*/}"
 COMMAND="$1"
 
-if [[ ! -f "$IDENTITIES_FILE" ]]; then
+_IDENTITIES_FILE_EXISTS=0
+
+if [[ -f "$IDENTITIES_FILE" ]]; then
+	_IDENTITIES_FILE_EXISTS=1
+fi
+
+if [[ -L "$IDENTITIES_FILE" && -e "$IDENTITIES_FILE" ]]; then
+	_IDENTITIES_FILE_EXISTS=1
+fi
+
+
+if [[ _IDENTITIES_FILE_EXISTS -eq 0 ]]; then
 	cat >&2 <<-_EOF
 	Error: You must place an age identity at $IDENTITIES_FILE:
 	    age-keygen -o $IDENTITIES_FILE
