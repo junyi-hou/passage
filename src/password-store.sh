@@ -613,6 +613,7 @@ PROGRAM="${0##*/}"
 COMMAND="$1"
 
 echo "$IDENTITIES_FILE"
+$IDENTITIES_FILE=$(echo $IDENTITIES_FILE | tr -d "\n")
 _IDENTITIES_FILE_EXISTS=0
 
 if [[ -f "$IDENTITIES_FILE" ]]; then
